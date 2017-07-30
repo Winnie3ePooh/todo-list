@@ -72,7 +72,17 @@ label[for='toggle-all'] {
 	text-align: center;
 }
 
+.toggle-all:before {
+	content: '❯';
+	font-size: 22px;
+	color: #e6e6e6;
+	padding: 10px 27px 10px 27px;
+	display: none;
+}
 
+.toggle-all:checked:before {
+	color: #737373;
+}
 
 ul.todo-list {
 	margin: 0;
@@ -99,7 +109,7 @@ ul.todo-list {
 	display: block;
 	width: 506px;
 	padding: 13px 17px 12px 17px;
-	margin: 0 0 0 43px;
+	margin: 0 0 0 57px;
 }
 
 .todo-list li.editing .view {

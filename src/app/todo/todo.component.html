@@ -10,7 +10,7 @@
   	<label for="toggle-all">Mark all as complete</label>
   	<ul class="todo-list">
   		<li *ngFor="let todo of getTodos()" [ngClass]="{complete: todo.complete, editing: todo === editingTodo}" class="row">
-  			<div class="view col-lg-10 col-md-6 col-sm-8 col-12">
+  			<div class="view col-lg-12 col-md-12 col-sm-12 col-12">
   				<input class="toggle" type="checkbox" [checked]="todo.complete" (click)="toggleCompletion(todo)">
   				<label (dblclick)="editTodo(todo)">{{todo.title}}</label>
   				<button class="destroy" (click)="remove(todo)"></button>
@@ -21,7 +21,7 @@
   		</li>
   	</ul>
   </section>
-  <footer class="col-lg-12 col-md-8 col-sm-8 col-8 footer d-flex" *ngIf="todoService.todos.length > 0">
+  <footer class="col-lg-12 col-md-8 col-sm-8 col-8 footer" *ngIf="todoService.todos.length > 0">
 	   <span class="todo-count"><strong>{{ getRemaining() }}</strong> {{ getRemaining() == 1 ? 'item' : 'items' }} left</span>
   	<ul class="filters">
       <li>
@@ -34,6 +34,6 @@
         <a [ngClass]="{selected: currStatus == 'complete'}" [routerLink]="['','complete']">Complete</a>
       </li>
     </ul>
-    <button class="clear-complete" *ngIf="todoService.getCompleted().length > 0" (click)="removeCompleted()">Clear completed</button>
+    <button class="clear-complete" [disabled]="todoService.getCompleted().length == 0" (click)="removeCompleted()">Clear completed</button>
   </footer>
 </section>
