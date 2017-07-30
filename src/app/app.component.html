@@ -1,20 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
-  <div class="input-group">
-    <input class="form-control" [(ngModel)]="text" (keyup.enter)="addTodo(text);this.text=''" placeholder="add todo"/>
-  </div>
-  <div class="row">
-    <div class="col-lg-4 col-lg-offset-4">
-      <ul>
-        <li *ngFor="let todo of todos" (dblclick)="editTodo(todo)">
-          <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete"/>
-          <span *ngIf="todo === editingTodo ? hidden : !hidden">{{todo.text}}</span>
-          <form *ngIf="todo === editingTodo ? !hidden : hidden" (keyup.enter)="doneEditing(todo)" (keyup.escape)="cancelEdit(todo)">
-            <input class="form-control" [(ngModel)]="todo.text" name="text" [autofocus]="true" />
-          </form>
-          <button (click)="(removeTodo(todo.id))"><i class="fa fa-times" aria-hidden="true"></i></button>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <section class="todoapp">
+    <base href="/"/>
+    <router-outlet></router-outlet>
+  </section>
 </div>
