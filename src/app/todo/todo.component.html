@@ -1,29 +1,29 @@
-<section class="todoapp" ng-controller="todoCtrl">
-  <header class="header">
-    <h1>{{title | uppercase}}</h1>
-    <form class="todo-form">
-      <input class="new-todo" placeholder="What needs to be done?" [(ngModel)]="newTodoTitle" name="newTodoTitle" (keyup.enter)="addTodo()" autofocus>
-    </form>
+<section class="row justify-content-center todoapp" ng-controller="todoCtrl">
+  <header class="col-lg-12 col-md-8 col-sm-12 col-8">
+  	<h1>{{title | uppercase}}</h1>
+    <div class="row justify-content-center">
+      <input class="new-todo col-lg-12 col-md-12 col-sm-8 col-12" placeholder="What needs to be done?" [(ngModel)]="newTodoTitle" name="newTodoTitle" (keyup.enter)="addTodo()" autofocus>
+    </div>
   </header>
-  <section class="main" *ngIf="getTodos().length > 0">
-    <input  class="toggle-all" type="checkbox" *ngIf="getTodos().length" #toggleall [checked]="todoService.allComplete()" (click)="todoService.setAllComplete(toggleall.checked)">
-    <label for="toggle-all">Mark all as complete</label>
-    <ul class="todo-list">
-      <li *ngFor="let todo of getTodos()" [ngClass]="{complete: todo.complete, editing: todo === editingTodo}">
-        <div class="view">
-          <input class="toggle" type="checkbox" [checked]="todo.complete" (click)="toggleCompletion(todo)">
-          <label (dblclick)="editTodo(todo)">{{todo.title}}</label>
-          <button class="destroy" (click)="remove(todo)"></button>
-        </div>
-        <form (keyup.enter)="updateEditingTodo(todo, editedtodo.value)">
-          <input class="edit"[value]="todo.title" #editedtodo (blur)="stopEditing(todo, editedtodo.value)" (focus)="todo == editingTodo" (keyup.escape)="cancelEditing(todo)">
-        </form>
-      </li>
-    </ul>
+  <section class="col-lg-12 col-md-8 col-sm-8 col-8" *ngIf="getTodos().length > 0">
+  	<input  class="toggle-all" type="checkbox" *ngIf="getTodos().length" #toggleall [checked]="todoService.allComplete()" (click)="todoService.setAllComplete(toggleall.checked)">
+  	<label for="toggle-all">Mark all as complete</label>
+  	<ul class="todo-list">
+  		<li *ngFor="let todo of getTodos()" [ngClass]="{complete: todo.complete, editing: todo === editingTodo}" class="row">
+  			<div class="view col-lg-10 col-md-6 col-sm-8 col-12">
+  				<input class="toggle" type="checkbox" [checked]="todo.complete" (click)="toggleCompletion(todo)">
+  				<label (dblclick)="editTodo(todo)">{{todo.title}}</label>
+  				<button class="destroy" (click)="remove(todo)"></button>
+  		</div>
+  			<form (keyup.enter)="updateEditingTodo(todo, editedtodo.value)">
+  				<input class="edit" [value]="todo.title" #editedtodo (blur)="stopEditing(todo, editedtodo.value)" (focus)="todo == editingTodo" (keyup.escape)="cancelEditing(todo)">
+  			</form>
+  		</li>
+  	</ul>
   </section>
-  <footer class="footer" *ngIf="todoService.todos.length > 0">
-    <span class="todo-count"><strong>{{ getRemaining() }}</strong> {{ getRemaining() == 1 ? 'item' : 'items' }} left</span>
-    <ul class="filters">
+  <footer class="col-lg-12 col-md-8 col-sm-8 col-8 footer d-flex" *ngIf="todoService.todos.length > 0">
+	   <span class="todo-count"><strong>{{ getRemaining() }}</strong> {{ getRemaining() == 1 ? 'item' : 'items' }} left</span>
+  	<ul class="filters">
       <li>
         <a [ngClass]="{selected: currStatus == undefined}" [routerLink]="['']">All</a>
       </li>
