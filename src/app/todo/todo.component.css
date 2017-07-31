@@ -53,7 +53,7 @@ input[type="checkbox"] {
 }
 
 .new-todo {
-	padding: 16px 16px 16px 60px;
+	padding: 16px 16px 16px 70px;
 	border: none;
 	background: rgba(0, 0, 0, 0.003);
 	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
@@ -65,11 +65,12 @@ label[for='toggle-all'] {
 
 .toggle-all {
 	position: absolute;
-	top: -50px;
-	left: -12px;
+	top: -55px;
+	left: 7px;
 	width: 60px;
 	height: 34px;
 	text-align: center;
+	border: none; /* Mobile Safari */
 }
 
 .toggle-all:before {
@@ -77,7 +78,6 @@ label[for='toggle-all'] {
 	font-size: 22px;
 	color: #e6e6e6;
 	padding: 10px 27px 10px 27px;
-	display: none;
 }
 
 .toggle-all:checked:before {
@@ -107,7 +107,6 @@ ul.todo-list {
 
 .todo-list li.editing .edit {
 	display: block;
-	width: 506px;
 	padding: 13px 17px 12px 17px;
 	margin: 0 0 0 57px;
 }
@@ -122,7 +121,7 @@ ul.todo-list {
 	/* auto, since non-WebKit browsers doesn't support input styling */
 	height: auto;
 	position: absolute;
-	top: 10px;
+	top: 4px;
 	bottom: 0;
 	margin: auto 0;
 	border: none; /* Mobile Safari */
@@ -141,7 +140,7 @@ ul.todo-list {
 .todo-list li label {
 	white-space: pre-line;
 	word-break: break-all;
-	padding: 15px 60px 15px 15px;
+	padding: 15px 60px 10px 15px;
 	margin-left: 45px;
 	display: block;
 	line-height: 1.2;
@@ -257,6 +256,24 @@ ul.todo-list {
 
 .clear-complete:hover {
 	text-decoration: underline;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.toggle-all,
+	.todo-list li .toggle {
+		background: none;
+	}
+
+	.todo-list li .toggle {
+		height: 40px;
+	}
+
+	.toggle-all {
+		-webkit-transform: rotate(90deg);
+		transform: rotate(90deg);
+		-webkit-appearance: none;
+		appearance: none;
+	}
 }
 
 @media screen and (max-width: 768px) {

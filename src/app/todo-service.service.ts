@@ -34,7 +34,6 @@ export class TodoServiceService {
   }
 
   allComplete() {
-    console.log(this.todos.length === this.getWithComplete.length);
     return this.todos.length === this.getWithComplete(true).length;
   }
 

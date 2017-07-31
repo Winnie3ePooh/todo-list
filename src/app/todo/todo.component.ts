@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Renderer, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { Todo } from '../todo';
@@ -21,9 +21,12 @@ export class TodoComponent implements OnInit {
   currStatus: string = '';
   route;
 
+  public myFocus = new EventEmitter<boolean>();
+
   constructor(
     private activateRoute: ActivatedRoute,
-    private todoService: TodoServiceService
+    private todoService: TodoServiceService,
+    private renderer: Renderer
   ) {
     this.route = activateRoute;
   }
@@ -32,9 +35,9 @@ export class TodoComponent implements OnInit {
 		this.route.params
 			.map(params => params.status)
 			.subscribe((status) => {
-        console.log(status);
 				this.currStatus = status;
 			});
+    this.myFocus.emit(true);
 	}
 
   getTodos() {

@@ -6,11 +6,13 @@ import { AppComponent }   from './app.component';
 import { TodoComponent } from './todo/todo.component';
 
 import { MyRoutingModule } from './my-routing/my-routing.module';
+import { FocusDirective } from './focus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    TodoComponent,
+    FocusDirective
   ],
   imports: [
     BrowserModule,

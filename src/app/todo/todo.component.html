@@ -2,10 +2,10 @@
   <header class="col-lg-12 col-md-8 col-sm-12 col-8">
   	<h1>{{title | uppercase}}</h1>
     <div class="row justify-content-center">
-      <input class="new-todo col-lg-12 col-md-12 col-sm-8 col-12" placeholder="What needs to be done?" [(ngModel)]="newTodoTitle" name="newTodoTitle" (keyup.enter)="addTodo()" autofocus>
+      <input #inp class="new-todo col-lg-12 col-md-12 col-sm-9 col-12" [focus]="myFocus" placeholder="What needs to be done?" [(ngModel)]="newTodoTitle" name="newTodoTitle" (keyup.enter)="addTodo()">
     </div>
   </header>
-  <section class="col-lg-12 col-md-8 col-sm-8 col-8" *ngIf="getTodos().length > 0">
+  <section class="col-lg-12 col-md-8 col-sm-9 col-8" *ngIf="getTodos().length > 0">
   	<input  class="toggle-all" type="checkbox" *ngIf="getTodos().length" #toggleall [checked]="todoService.allComplete()" (click)="todoService.setAllComplete(toggleall.checked)">
   	<label for="toggle-all">Mark all as complete</label>
   	<ul class="todo-list">
@@ -14,14 +14,14 @@
   				<input class="toggle" type="checkbox" [checked]="todo.complete" (click)="toggleCompletion(todo)">
   				<label (dblclick)="editTodo(todo)">{{todo.title}}</label>
   				<button class="destroy" (click)="remove(todo)"></button>
-  		</div>
-  			<form (keyup.enter)="updateEditingTodo(todo, editedtodo.value)">
-  				<input class="edit" [value]="todo.title" #editedtodo (blur)="stopEditing(todo, editedtodo.value)" (focus)="todo == editingTodo" (keyup.escape)="cancelEditing(todo)">
+  		  </div>
+  			<form class="col-12" (keyup.enter)="updateEditingTodo(todo, editedtodo.value)">
+  				<input autofocus class="edit col-lg-10 col-md-9 col-sm-9 col-11" [value]="todo.title" #editedtodo (blur)="stopEditing(todo, editedtodo.value)" (keyup.escape)="cancelEditing(todo)">
   			</form>
   		</li>
   	</ul>
   </section>
-  <footer class="col-lg-12 col-md-8 col-sm-8 col-8 footer" *ngIf="todoService.todos.length > 0">
+  <footer class="col-lg-12 col-md-8 col-sm-9 col-8 footer" *ngIf="todoService.todos.length > 0">
 	   <span class="todo-count"><strong>{{ getRemaining() }}</strong> {{ getRemaining() == 1 ? 'item' : 'items' }} left</span>
   	<ul class="filters">
       <li>
